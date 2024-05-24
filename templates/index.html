@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+        }
+        h1, h2 {
+            margin-bottom: 30px;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Movie Review Sentiment Analysis</h1>
+        <div class="image-container">
+            <h2 class="mt-3">How would you rate the movie: {{ filme }}?</h2>
+        </div>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="review">Enter your movie review:</label>
+                <textarea class="form-control" id="review" name="review" rows="4" required></textarea>
+                <input type="hidden" name="filme" value="{{ filme }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Analyze Sentiment</button>
+        </form>
+        {% if prediction is defined %}
+            {% if prediction == 'positivo' %}
+                <div class="alert alert-success mt-3">
+                    <h2 class="text-center">Positive sentiment predicted for your review</h2>
+                    <p class="text-center">Review: {{ review }}</p>
+                </div>
+            {% else %}
+                <div class="alert alert-danger mt-3">
+                    <h2 class="text-center">Negative sentiment predicted for your review</h2>
+                    <p class="text-center">Review: {{ review }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
