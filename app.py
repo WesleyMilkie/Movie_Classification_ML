@@ -22,17 +22,9 @@ vectorizer_carregado = joblib.load('vectorizer.pkl')
 
 # Função para prever sentimento de um novo texto
 def prever_sentimento(novo_texto):
-    # Vetorizar o novo texto
     novo_texto_tfidf = vectorizer_carregado.transform([novo_texto])
-    # Fazer a previsão
     predicao = modelo_carregado.predict(novo_texto_tfidf)
-    # Converter a previsão para rótulo de categoria
     return 'positivo' if predicao[0] == 1 else 'negativo'
-
-def translate_to_english(text):
-    translator = Translator()
-    translated_text = translator.translate(text, src='pt', dest='en').text
-    return translated_text
 
 def traduzir(text):
     tradutor = GoogleTranslator(source="pt", target="en")
