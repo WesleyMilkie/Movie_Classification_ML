@@ -1,0 +1,9 @@
+env_ML_movie_classification
+modelo_logistic_regression.pkl
+modelo_svm.pkl
+modelo.pkl
+vectorizer.pkl
+teste.py
+teste2.py
+model.py
+static
